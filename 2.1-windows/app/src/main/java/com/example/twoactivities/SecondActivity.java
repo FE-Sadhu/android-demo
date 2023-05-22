@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
-
+    private static final String LOG_TAG = SecondActivity.class.getSimpleName();
     public static final String EXTRA_REPLY =
             "com.example.twoactivities.extra.REPLY";
 
@@ -17,6 +18,8 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "-------");
+        Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
@@ -29,6 +32,42 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d(LOG_TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(LOG_TAG, "onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(LOG_TAG, "onRestart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(LOG_TAG, "onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(LOG_TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(LOG_TAG, "onStop");
+    }
+
     public void returnReply(View view) {
         String reply = mReply.getText().toString();
 
@@ -37,6 +76,7 @@ public class SecondActivity extends AppCompatActivity {
 
         // 一般为 RESULT_OK 、RESULT_CANCELED 、RESULT_FIRST_USER 三种状态
         setResult(RESULT_OK, replyIntent);
+        Log.d(LOG_TAG, "End SecondActivity");
         finish();
     }
 }
